@@ -708,7 +708,7 @@ span.d-none.d-lg-block  {
 }
 
 .sidebar-nav .nav-link i {
-  font-size: 16px;
+  font-size: 20px; /* tamaño de los iconos del menu*/
   margin-right: 10px;
   color: #ffffff;
 }
