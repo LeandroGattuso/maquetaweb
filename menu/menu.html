@@ -25,7 +25,7 @@
 
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">  
 
 </head>
 
@@ -205,7 +205,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#Seguridaddelsistema_-4-_0" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-person-fill-gear" ></i><span>Seguridad del sistema</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-person-fill-gear"></i><span>Seguridad del sistema</span><i
+              class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="Seguridaddelsistema_-4-_0" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -715,7 +716,8 @@
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#Proyectoscomerciales_-1500-_0" data-bs-toggle="collapse"
             href="#">
-            <i class="bi bi-bar-chart-fill"></i><span>Proyectos comerciales</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-bar-chart-fill"></i><span>Proyectos comerciales</span><i
+              class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="Proyectoscomerciales_-1500-_0" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -831,7 +833,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#Créditopersonal_-1800-_0" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-person-vcard-fill"></i><span>Crédito personal</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-person-vcard-fill"></i><span>Crédito personal</span><i
+              class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="Créditopersonal_-1800-_0" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -2037,7 +2040,8 @@
         </li>
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#Serviciotécnico_-2900-_0" data-bs-toggle="collapse" href="#">
-            <i class="bi bi-person-workspace"></i><span>Servicio técnico</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-person-workspace"></i><span>Servicio técnico</span><i
+              class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="Serviciotécnico_-2900-_0" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -3860,7 +3864,8 @@
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#Integraciónimpositiva_-8700-_0" data-bs-toggle="collapse"
             href="#">
-            <i class="bi bi-file-bar-graph-fill"></i><span>Integración impositiva</span><i class="bi bi-chevron-down ms-auto"></i>
+            <i class="bi bi-file-bar-graph-fill"></i><span>Integración impositiva</span><i
+              class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul id="Integraciónimpositiva_-8700-_0" class="nav-content collapse " data-bs-parent="#sidebar-nav">
             <li>
@@ -4211,7 +4216,7 @@
             </li>
           </ul>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link collapsed" data-bs-target="#Indicadoresgerenciales_-12000-_0" data-bs-toggle="collapse"
             href="#">
@@ -4773,7 +4778,7 @@
           <span>Usuario</span>
         </a>
       </li> -->
-    
+
 
     </ul>
 
@@ -4828,6 +4833,50 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+
+  <!-- BUSCADOR DEL MENU PRINCIPAL-->
+  <!-- <script src="assets/js/buscador_menu.js" async></script> -->
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function () {
+  
+  var searchInput = document.getElementById('buscador');
+  var menuItems = document.querySelectorAll('.nav-item');
+
+  searchInput.addEventListener('input', function () {
+    var searchText = searchInput.value.toLowerCase();
+
+    menuItems.forEach(function (menuItem) {
+      var isSearchContainer = menuItem.contains(searchInput);
+
+      if (!isSearchContainer) {
+        var itemText = menuItem.textContent.toLowerCase();
+        var hasMatch = itemText.includes(searchText);
+        menuItem.style.display = hasMatch ? 'block' : 'none';
+
+        var submenus = menuItem.querySelectorAll('.nav-content.collapse');
+        submenus.forEach(function (submenu) {
+          var submenuItems = submenu.querySelectorAll('li');
+          submenuItems.forEach(function (submenuItem) {
+            var submenuItemText = submenuItem.textContent.toLowerCase();
+            var hasSubmenuMatch = submenuItemText.includes(searchText);
+            submenuItem.style.display = hasSubmenuMatch ? 'block' : 'none';
+          });
+        });
+      }
+    });
+
+    // Forzar la visibilidad del contenedor de búsqueda después de la búsqueda
+    searchInput.parentElement.style.display = 'flex';
+  });
+});
+
+
+
+</script>
+
 
 </body>
 
