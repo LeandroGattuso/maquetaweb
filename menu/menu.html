@@ -4841,7 +4841,6 @@
 <script>
 
 document.addEventListener('DOMContentLoaded', function () {
-  
   var searchInput = document.getElementById('buscador');
   var menuItems = document.querySelectorAll('.nav-item');
 
@@ -4850,13 +4849,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     menuItems.forEach(function (menuItem) {
       var isSearchContainer = menuItem.contains(searchInput);
+      var submenus = menuItem.querySelectorAll('.nav-content.collapse');
 
       if (!isSearchContainer) {
         var itemText = menuItem.textContent.toLowerCase();
         var hasMatch = itemText.includes(searchText);
         menuItem.style.display = hasMatch ? 'block' : 'none';
 
-        var submenus = menuItem.querySelectorAll('.nav-content.collapse');
         submenus.forEach(function (submenu) {
           var submenuItems = submenu.querySelectorAll('li');
           submenuItems.forEach(function (submenuItem) {
@@ -4864,12 +4863,25 @@ document.addEventListener('DOMContentLoaded', function () {
             var hasSubmenuMatch = submenuItemText.includes(searchText);
             submenuItem.style.display = hasSubmenuMatch ? 'block' : 'none';
           });
+
+          // Mostrar el submenu si hay alguna coincidencia en sus elementos
+          submenu.style.display = Array.from(submenuItems).some(function (submenuItem) {
+            return submenuItem.style.display === 'block';
+          }) ? 'block' : 'none';
         });
       }
     });
 
-    // Forzar la visibilidad del contenedor de búsqueda después de la búsqueda
-    searchInput.parentElement.style.display = 'flex';
+    // Borrar estilos al limpiar el buscador
+    if (searchText.trim() === '') {
+      menuItems.forEach(function (menuItem) {
+        menuItem.style.removeProperty('display');
+        var submenus = menuItem.querySelectorAll('.nav-content.collapse');
+        submenus.forEach(function (submenu) {
+          submenu.style.removeProperty('display');
+        });
+      });
+    }
   });
 });
 
